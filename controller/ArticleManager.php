@@ -70,8 +70,9 @@
 			递增文章访问人数
 		*/
 		function inc_visited($articleId) {
-			$visited = $this->tableQuery->query_colums(array("visited"));
-			$visited += 1;
+			$reslut = $this->tableQuery->query_colums(array("visited"));
+			$reslut = mysql_fetch_array($reslut);
+			$visited = intval($reslut["visited"]) + 1;
 			return $this->tableQuery->query_modify("_id", $articleId, array("visited"), array($visited));
 		}
 
@@ -79,8 +80,9 @@
 			递增赞人数
 		*/
 		function inc_praise($articleId) {
-			$praise = $this->tableQuery->query_colums(array("praise"));
-			$praise += 1;
+			$reslut = $this->tableQuery->query_colums(array("praise"));
+			$reslut = mysql_fetch_array($reslut);
+			$praise = intval($reslut["praise"]) + 1;
 			return $this->tableQuery->query_modify("_id", $articleId, array("praise"), array($praise));
 		}
 
